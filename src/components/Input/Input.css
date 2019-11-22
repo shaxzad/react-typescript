@@ -1,0 +1,15 @@
+label {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+input {
+  width: auto;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+  /* width: 100%; */
+  padding: 12px 20px;
+  margin: 8px 0;
+}

@@ -1,0 +1,17 @@
+.header-top {
+  background: #333;
+}
+.header-top nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.header-top nav ul li a {
+  letter-spacing: 1px;
+  line-height: 50px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 30px;
+  text-decoration: none;
+}

@@ -9,6 +9,6 @@ export interface Customer {
 }
 
 export interface ICustomerDetails {
-  id: number;
-  [key: string]: string | number;
+  id?: number;
+  [key: string]: string | number | undefined;
 }

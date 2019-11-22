@@ -10,7 +10,7 @@ export interface IState {
   customerDetails: ICustomerDetails;
   openModal: boolean;
   customer: ICustomerDetails[];
-  isEditing: boolean
+  isEditing: boolean;
 }
 
 class Customer extends React.Component<IProps, IState> {
@@ -18,7 +18,6 @@ class Customer extends React.Component<IProps, IState> {
     super(props);
     this.state = {
       customerDetails: {
-        id: Math.floor(Math.random() * 100),
         first_name: "",
         last_name: "",
         email: "",
@@ -60,12 +59,16 @@ class Customer extends React.Component<IProps, IState> {
 
   addRow = () => {
     let addCustomer = this.state.customer;
-    if(this.state.isEditing){
-      const index = this.state.customer.findIndex(c => c.id === this.state.customerDetails.id)
-      addCustomer.splice(index, 1, this.state.customerDetails)
-    }
-    else {
-      addCustomer.push(this.state.customerDetails);
+    if (this.state.isEditing && this.state.customerDetails.id) {
+      const index = this.state.customer.findIndex(
+        c => c.id === this.state.customerDetails.id
+      );
+      addCustomer.splice(index, 1, this.state.customerDetails);
+    } else {
+      addCustomer.push({
+        ...this.state.customerDetails,
+        id: Math.round(Math.random() * 100)
+      });
     }
     this.setState({
       customer: addCustomer,
@@ -77,7 +80,8 @@ class Customer extends React.Component<IProps, IState> {
   updateRow = (customer: ICustomerDetails) => {
     this.setState({
       customerDetails: customer,
-      openModal: true
+      openModal: true,
+      isEditing: true
     });
   };
 
@@ -94,7 +98,7 @@ class Customer extends React.Component<IProps, IState> {
     this.addRow();
     this.setState({
       customerDetails: {
-        id: 0,
+        id: undefined,
         first_name: "",
         last_name: "",
         email: "",
@@ -161,7 +165,7 @@ class Customer extends React.Component<IProps, IState> {
 
   render(): JSX.Element {
     const customerList = this.state.customer;
-
+    
     return (
       <div className="customer-form">
         <button onClick={() => this.setState({ openModal: true })}>

@@ -113,70 +113,89 @@ class Customer extends React.Component<IProps, IState> {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <Input
-            type="text"
-            labelname="first name"
-            placeholder="Enter your first name"
-            onChange={this.handleChange}
-            value={this.state.customerDetails.first_name as string}
-            name="first_name"
-          />
-          <Input
-            type="text"
-            labelname="Last name"
-            placeholder="Enter your Last name"
-            onChange={this.handleChange}
-            value={this.state.customerDetails.last_name as string}
-            name="last_name"
-          />
-          <Input
-            type="email"
-            labelname="Email"
-            placeholder="Enter your email"
-            onChange={this.handleChange}
-            value={this.state.customerDetails.email as string}
-            name="email"
-          />
-          <Input
-            type="number"
-            labelname="Number"
-            placeholder="Enter your Number"
-            onChange={this.handleChange}
-            value={this.state.customerDetails.phone as string}
-            name={"phone"}
-          />
-          <Input
-            type="text"
-            labelname="Address"
-            placeholder="Enter your Address"
-            onChange={this.handleChange}
-            value={this.state.customerDetails.address as string}
-            name="address"
-          />
-          <Button />
+          <div className="col-6">
+            <Input
+              type="text"
+              labelname="first name"
+              placeholder="Enter your first name"
+              onChange={this.handleChange}
+              value={this.state.customerDetails.first_name as string}
+              name="first_name"
+            />
+          </div>
+          <div className="col-6">
+            <Input
+              type="text"
+              labelname="Last name"
+              placeholder="Enter your Last name"
+              onChange={this.handleChange}
+              value={this.state.customerDetails.last_name as string}
+              name="last_name"
+            />
+          </div>
+          <div className="col-6">
+            <Input
+              type="email"
+              labelname="Email"
+              placeholder="Enter your email"
+              onChange={this.handleChange}
+              value={this.state.customerDetails.email as string}
+              name="email"
+            />
+          </div>
+          <div className="col-6">
+            <Input
+              type="number"
+              labelname="Number"
+              placeholder="Enter your Number"
+              onChange={this.handleChange}
+              value={this.state.customerDetails.phone as string}
+              name={"phone"}
+            />
+          </div>
+          <div className="col-12">
+            <Input
+              type="text"
+              labelname="Address"
+              placeholder="Enter your Address"
+              onChange={this.handleChange}
+              value={this.state.customerDetails.address as string}
+              name="address"
+            />
+          </div>
+          <div className="col-12">
+            {this.state.isEditing ? (
+              <Button btnName="Update" />
+            ) : (
+              <Button btnName="Create" />
+            )}
+          </div>
         </form>
       </div>
     );
   };
 
   renderModalFooter = (): JSX.Element => {
-    return <div>Modal Footer goes here</div>;
+    return <div>Footer</div>;
   };
 
   render(): JSX.Element {
     const customerList = this.state.customer;
-    
+
     return (
       <div className="customer-form">
-        <button onClick={() => this.setState({ openModal: true })}>
-          Add Customer
-        </button>
+        <Button
+          btnName="Add Customer"
+          onClick={() => this.setState({ openModal: true })}
+        />
 
         <Modal
           showModal={this.state.openModal}
-          modalTitle={"Custom Modal"}
+          modalTitle={
+            this.state.isEditing ? "Update Customer" : "Create customer"
+          }
           modalBody={this.renderModalBody()}
-          modalFooter={this.renderModalFooter()}
+          // modalFooter={this.renderModalFooter()}
           handleClose={() => this.setState({ openModal: false })}
         />
 

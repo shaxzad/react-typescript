@@ -1,10 +1,17 @@
 import React from "react";
 import "./Button.css";
 
-const Button: React.FC = () => {
+export interface IProps {
+  btnName: string;
+  onClick?: any;
+}
+
+const Button: React.SFC<IProps> = props => {
   return (
     <div>
-      <button type="submit">Submit</button>
+      <button type="submit" onClick={props.onClick}>
+        {props.btnName}
+      </button>
     </div>
   );
 };

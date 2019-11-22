@@ -6,7 +6,7 @@ export interface IProps {
   handleClose: () => void;
   modalTitle: string;
   modalBody: JSX.Element;
-  modalFooter: JSX.Element;
+  modalFooter?: JSX.Element;
 }
 
 const Modal: React.SFC<IProps> = ({

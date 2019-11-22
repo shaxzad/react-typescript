@@ -3,7 +3,7 @@ label {
   font-weight: bold;
 }
 input {
-  width: auto;
+  width: 100%;
 }
 
 input[type="text"],

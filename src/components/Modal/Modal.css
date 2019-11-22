@@ -15,11 +15,12 @@
   max-width: 800px;
   width: 90%;
   position: relative;
-  margin: 10% auto;
+  margin: 5% auto;
   padding: 20px;
   border-radius: 3px;
   background: #fff;
   z-index: 10000;
+  height: 80%;
 }
 
 .close {

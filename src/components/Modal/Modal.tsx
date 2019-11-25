@@ -5,7 +5,7 @@ export interface IProps {
   showModal: boolean;
   handleClose: () => void;
   modalTitle: string;
-  modalBody: JSX.Element;
+  modalBody?: JSX.Element;
   modalFooter?: JSX.Element;
 }
 

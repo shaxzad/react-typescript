@@ -14,6 +14,9 @@ const Header: React.FC = () => {
             <li>
               <Link to="/customer">Add customer</Link>
             </li>
+            <li>
+              <Link to="/phone">Phone Book</Link>
+            </li>
           </ul>
         </nav>
       </header>

@@ -1,6 +1,7 @@
 import React from "react";
 import AppLayout from "./AppLayout/index";
 import Customer from "./Customer/index";
+import PhoneBook from "./PhoneBook/index";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
@@ -12,6 +13,7 @@ const App: React.FC = () => {
           <Router>
             <AppLayout />
             <Route path="/customer" exact component={Customer} />
+            <Route path="/phone" exact component={PhoneBook} />
           </Router>
         </div>
       </div>

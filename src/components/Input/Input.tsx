@@ -3,7 +3,7 @@ import "./Input.css";
 
 export interface IProps {
   labelname: string;
-  value: string;
+  value: string | number;
   type: "text" | "email" | "number";
   placeholder?: string;
   onChange: (e?: any) => void;

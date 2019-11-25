@@ -12,3 +12,13 @@ export interface ICustomerDetails {
   id?: number;
   [key: string]: string | number | undefined;
 }
+
+export interface IPhoneBook {
+  id?: number;
+  first_name: string;
+  last_name: string;
+  company: string;
+  title: string;
+  mobile_num: number;
+  phone_num: number;
+}

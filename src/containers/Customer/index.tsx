@@ -2,9 +2,8 @@ import * as React from "react";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
-import { ICustomerDetails, IRoutes } from "../../models";
+import { ICustomerDetails } from "../../models";
 import "./index.css";
-import { RouteComponentProps } from "react-router";
 
 export interface IProps {
   customerList: ICustomerDetails[];

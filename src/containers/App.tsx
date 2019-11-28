@@ -3,7 +3,12 @@ import AppLayout from "./AppLayout/index";
 import Customer from "./Customer/index";
 import AddCustomer from "./Customer/addCustomer";
 import PhoneBook from "./PhoneBook/index";
-import { Route, withRouter, RouteComponentProps } from "react-router-dom";
+import {
+  Route,
+  withRouter,
+  RouteComponentProps,
+  Switch
+} from "react-router-dom";
 import "./App.css";
 import { ICustomerDetails, IRoutes } from "../models/index";
 
@@ -89,30 +94,33 @@ class App extends React.Component<IProps, IState> {
         <div className="row">
           <div className="col-12">
             <AppLayout />
-            <Route
-              path={IRoutes.CUSTOMER}
-              exact
-              component={() => (
-                <Customer
-                  customerList={this.state.customers}
-                  updateCustomer={this.updateCustomer}
-                  deleteRow={this.deleteRow}
-                />
-              )}
-            />
-            <Route path="/phone" exact component={PhoneBook} />
-            <Route
-              path={IRoutes.ADD_CUTOMER}
-              exact
-              component={() => (
-                <AddCustomer
-                  {...this.props}
-                  addNewCustomer={this.addNewCustomer}
-                  selectedCustomer={selectedCustomer}
-                  isEditing={isEdit}
-                />
-              )}
-            />
+            <Switch>
+              <Route
+                path={IRoutes.CUSTOMER}
+                exact
+                component={() => (
+                  <Customer
+                    customerList={this.state.customers}
+                    updateCustomer={this.updateCustomer}
+                    deleteRow={this.deleteRow}
+                  />
+                )}
+              />
+              <Route path="/phone" exact component={PhoneBook} />
+              <Route
+                path={IRoutes.ADD_CUTOMER}
+                exact
+                component={() => (
+                  <AddCustomer
+                    {...this.props}
+                    addNewCustomer={this.addNewCustomer}
+                    selectedCustomer={selectedCustomer}
+                    isEditing={isEdit}
+                  />
+                )}
+              />
+              <Route path="/" render={() => <div>404</div>} />
+            </Switch>
           </div>
         </div>
       </div>

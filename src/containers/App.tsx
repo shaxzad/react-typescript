@@ -3,6 +3,7 @@ import AppLayout from "./AppLayout/index";
 import Customer from "./Customer/index";
 import AddCustomer from "./Customer/addCustomer";
 import PhoneBook from "./PhoneBook/index";
+import LifeCycle from "./lifecycle";
 import {
   Route,
   withRouter,
@@ -18,6 +19,7 @@ export interface IState {
   customers: ICustomerDetails[];
   selectedCustomer: ICustomerDetails | null;
   isEdit: boolean;
+  editColumn: boolean;
 }
 
 class App extends React.Component<IProps, IState> {
@@ -43,7 +45,8 @@ class App extends React.Component<IProps, IState> {
         }
       ],
       selectedCustomer: null,
-      isEdit: false
+      isEdit: false,
+      editColumn: false
     };
   }
 
@@ -87,8 +90,12 @@ class App extends React.Component<IProps, IState> {
     this.props.history.push(IRoutes.ADD_CUTOMER);
   };
 
+  updateInput = (customer: ICustomerDetails) => {
+    console.log("update input");
+  };
+
   render(): JSX.Element {
-    const { isEdit, selectedCustomer } = this.state;
+    const { isEdit, selectedCustomer, editColumn } = this.state;
     return (
       <div className="conatiner">
         <div className="row">
@@ -103,6 +110,8 @@ class App extends React.Component<IProps, IState> {
                     customerList={this.state.customers}
                     updateCustomer={this.updateCustomer}
                     deleteRow={this.deleteRow}
+                    updateInput={this.updateInput}
+                    // editColumn={this.editColumn}
                   />
                 )}
               />
@@ -119,6 +128,7 @@ class App extends React.Component<IProps, IState> {
                   />
                 )}
               />
+              <Route path="/lifecycle" exact component={LifeCycle} />
               <Route path="/" render={() => <div>404</div>} />
             </Switch>
           </div>

@@ -9,6 +9,7 @@ export interface IProps {
   customerList: ICustomerDetails[];
   updateCustomer: (customer: ICustomerDetails) => void;
   deleteRow: (customer: ICustomerDetails) => void;
+  updateInput: (customer: ICustomerDetails) => void;
 }
 export interface IState {
   customerDetails: ICustomerDetails;
@@ -29,7 +30,8 @@ class Customer extends React.Component<IProps, IState> {
         description: ""
       },
       openModal: false,
-      isEditing: false
+      isEditing: false,
+      // editColumn: false
     };
   }
 
@@ -206,8 +208,14 @@ class Customer extends React.Component<IProps, IState> {
             {customerList.map((value, i) => {
               return (
                 <tr>
-                  <td> {value.id} </td>
-                  <td> {value.first_name} </td>
+                  <td onClick={() => this.props.updateInput(value)}>
+                    {" "}
+                    {value.id}{" "}
+                  </td>
+                  <td onClick={() => this.props.updateInput(value)}>
+                    {" "}
+                    {value.first_name}{" "}
+                  </td>
                   <td> {value.last_name} </td>
                   <td> {value.email} </td>
                   <td> {value.number} </td>

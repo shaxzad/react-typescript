@@ -29,12 +29,20 @@ class AddCustomer extends React.Component<IProps, IState> {
   }
 
   componentDidMount() {
+    console.log("did mount");
     const { selectedCustomer, isEditing } = this.props;
     if (isEditing && selectedCustomer) {
       this.setState({
         customerDetails: selectedCustomer
       });
     }
+  }
+  componentDidUpdate() {
+    console.log("did update");
+  }
+
+  componentWillUnmount() {
+    console.log("unmount here");
   }
 
   handleChange = (e: any) => {
@@ -50,6 +58,9 @@ class AddCustomer extends React.Component<IProps, IState> {
     e.preventDefault();
     this.props.addNewCustomer(this.state.customerDetails);
     this.props.history.push(IRoutes.CUSTOMER);
+  };
+  handleUpdateInput = (e: any) => {
+    console.log("here");
   };
   render(): JSX.Element {
     const { selectedCustomer, isEditing } = this.props;

@@ -5,11 +5,15 @@ import Modal from "../../components/Modal/Modal";
 import { ICustomerDetails } from "../../models";
 import "./index.css";
 
-export interface IProps {}
+export interface IProps {
+  customerList: ICustomerDetails[];
+  updateCustomer: (customer: ICustomerDetails) => void;
+  deleteRow: (customer: ICustomerDetails) => void;
+  updateInput: (customer: ICustomerDetails) => void;
+}
 export interface IState {
   customerDetails: ICustomerDetails;
   openModal: boolean;
-  customer: ICustomerDetails[];
   isEditing: boolean;
 }
 
@@ -26,64 +30,47 @@ class Customer extends React.Component<IProps, IState> {
         description: ""
       },
       openModal: false,
-      customer: [
-        {
-          id: 0,
-          first_name: "shaxzad",
-          last_name: "ali",
-          email: "some@gmil.com",
-          number: "121342434",
-          address: "asdfgjdhlshd"
-        },
-        {
-          id: 1,
-          first_name: "zafar",
-          last_name: "ali",
-          email: "some@gmil.com",
-          number: "121342434",
-          address: "asdfgjdhlshd"
-        }
-      ],
-      isEditing: false
+      isEditing: false,
+      // editColumn: false
     };
   }
 
-  deleteRow = (e: any, id: number) => {
-    const index = this.state.customer.findIndex(customer => customer.id === id);
-    let newCustomer = this.state.customer;
-    newCustomer.splice(index, 1);
-    this.setState({
-      customer: newCustomer
-    });
-  };
+  // deleteRow = (e: any, id: number) => {
+  // const index = this.props.customerList.findIndex(
+  //   customerList => customerList.id === id
+  // );
+  // let newCustomer = this.props.customerList;
+  // newCustomer.splice(index, 1);
+  // };
 
-  addRow = () => {
-    let addCustomer = this.state.customer;
-    if (this.state.isEditing && this.state.customerDetails.id) {
-      const index = this.state.customer.findIndex(
-        c => c.id === this.state.customerDetails.id
-      );
-      addCustomer.splice(index, 1, this.state.customerDetails);
-    } else {
-      addCustomer.push({
-        ...this.state.customerDetails,
-        id: Math.round(Math.random() * 100)
-      });
-    }
-    this.setState({
-      customer: addCustomer,
-      openModal: false,
-      isEditing: false
-    });
-  };
+  // addRow = () => {
+  // let addCustomer = this.state.customer;
+  // if (this.state.isEditing && this.state.customerDetails.id) {
+  //   const index = this.state.customer.findIndex(
+  //     c => c.id === this.state.customerDetails.id
+  //   );
+  //   addCustomer.splice(index, 1, this.state.customerDetails);
+  // } else {
+  //   addCustomer.push({
+  //     ...this.state.customerDetails,
+  //     id: Math.round(Math.random() * 100)
+  //   });
+  // }
+  // this.setState({
+  //   customer: addCustomer,
+  //   openModal: false,
+  //   isEditing: false
+  // });
+  // };
 
-  updateRow = (customer: ICustomerDetails) => {
-    this.setState({
-      customerDetails: customer,
-      openModal: true,
-      isEditing: true
-    });
-  };
+  // updateRow = (e: any) => {
+  // this.props.updateCustomer(this.state.customerDetails);
+  // this.setState({
+  //   customerDetails: customer,
+  // openModal: true,
+  // isEditing: true
+  // });
+  // };
 
   handleChange = (e: any) => {
     this.setState({
@@ -95,7 +82,7 @@ class Customer extends React.Component<IProps, IState> {
   };
   handleSubmit = (e: any) => {
     e.preventDefault();
-    this.addRow();
+    // this.addRow();
     this.setState({
       customerDetails: {
         id: undefined,
@@ -180,7 +167,7 @@ class Customer extends React.Component<IProps, IState> {
   };
 
   render(): JSX.Element {
-    const customerList = this.state.customer;
+    const customerList = this.props.customerList;
 
     return (
       <div className="customer-form">
@@ -221,14 +208,22 @@ class Customer extends React.Component<IProps, IState> {
             {customerList.map((value, i) => {
               return (
                 <tr>
-                  <td> {value.id} </td>
-                  <td> {value.first_name} </td>
+                  <td onClick={() => this.props.updateInput(value)}>
+                    {" "}
+                    {value.id}{" "}
+                  </td>
+                  <td onClick={() => this.props.updateInput(value)}>
+                    {" "}
+                    {value.first_name}{" "}
+                  </td>
                   <td> {value.last_name} </td>
                   <td> {value.email} </td>
                   <td> {value.number} </td>
                   <td> {value.address} </td>
-                  <td onClick={() => this.deleteRow(value.id, i)}> X </td>
-                  <td onClick={() => this.updateRow(value)}>update</td>
+                  <td onClick={() => this.props.deleteRow(value)}> X </td>
+                  <td onClick={() => this.props.updateCustomer(value)}>
+                    update
+                  </td>
                 </tr>
               );
             })}

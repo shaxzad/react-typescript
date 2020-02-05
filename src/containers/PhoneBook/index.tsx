@@ -69,8 +69,8 @@ class PhoneBook extends React.Component<IProps, IState> {
       openModal: false
     });
   };
-  delete = () => {
-    console.log("here");
+  delete = (e: any, id: number) => {
+    console.log(id, "heees");
   };
   update = () => {
     console.log("dfd");
@@ -146,7 +146,6 @@ class PhoneBook extends React.Component<IProps, IState> {
   };
   render(): JSX.Element {
     const PhoneBookList = this.state.phoneDetails;
-    console.log(PhoneBookList);
     return (
       <div>
         <Button
@@ -185,7 +184,7 @@ class PhoneBook extends React.Component<IProps, IState> {
                   <td> {value.title}</td>
                   <td> {value.phone_num}</td>
                   <td> {value.mobile_num}</td>
-                  <td> {(onclick = () => this.delete())} X </td>
+                  <td> {(onclick = () => this.delete(value.id, i))} X </td>
                   <td> {(onclick = () => this.update())} Update </td>
                 </tr>
               );

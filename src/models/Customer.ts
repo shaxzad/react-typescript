@@ -22,3 +22,14 @@ export interface IPhoneBook {
   mobile_num: number;
   phone_num: number;
 }
+
+export interface IPost {
+  post: any;
+  posts: any;
+  id: number;
+  title: string;
+  description: string;
+  body: string;
+  openModal: boolean;
+  labelname: string;
+}

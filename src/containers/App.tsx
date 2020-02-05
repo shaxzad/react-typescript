@@ -4,6 +4,8 @@ import Customer from "./Customer/index";
 import AddCustomer from "./Customer/addCustomer";
 import PhoneBook from "./PhoneBook/index";
 import LifeCycle from "./lifecycle";
+import Posts from "./Post/post";
+
 import {
   Route,
   withRouter,
@@ -12,6 +14,8 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { ICustomerDetails, IRoutes } from "../models/index";
+import { Provider } from "react-redux";
+import store from "../store";
 
 export interface IProps extends RouteComponentProps<any> {}
 
@@ -97,43 +101,46 @@ class App extends React.Component<IProps, IState> {
   render(): JSX.Element {
     const { isEdit, selectedCustomer, editColumn } = this.state;
     return (
-      <div className="conatiner">
-        <div className="row">
-          <div className="col-12">
-            <AppLayout />
-            <Switch>
-              <Route
-                path={IRoutes.CUSTOMER}
-                exact
-                component={() => (
-                  <Customer
-                    customerList={this.state.customers}
-                    updateCustomer={this.updateCustomer}
-                    deleteRow={this.deleteRow}
-                    updateInput={this.updateInput}
-                    // editColumn={this.editColumn}
-                  />
-                )}
-              />
-              <Route path="/phone" exact component={PhoneBook} />
-              <Route
-                path={IRoutes.ADD_CUTOMER}
-                exact
-                component={() => (
-                  <AddCustomer
-                    {...this.props}
-                    addNewCustomer={this.addNewCustomer}
-                    selectedCustomer={selectedCustomer}
-                    isEditing={isEdit}
-                  />
-                )}
-              />
-              <Route path="/lifecycle" exact component={LifeCycle} />
-              <Route path="/" render={() => <div>404</div>} />
-            </Switch>
+      <Provider store={store}>
+        <div className="conatiner">
+          <div className="row">
+            <div className="col-12">
+              <AppLayout />
+              <Switch>
+                <Route
+                  path={IRoutes.CUSTOMER}
+                  exact
+                  component={() => (
+                    <Customer
+                      customerList={this.state.customers}
+                      updateCustomer={this.updateCustomer}
+                      deleteRow={this.deleteRow}
+                      updateInput={this.updateInput}
+                      // editColumn={this.editColumn}
+                    />
+                  )}
+                />
+                <Route path="/phone" exact component={PhoneBook} />
+                <Route
+                  path={IRoutes.ADD_CUTOMER}
+                  exact
+                  component={() => (
+                    <AddCustomer
+                      {...this.props}
+                      addNewCustomer={this.addNewCustomer}
+                      selectedCustomer={selectedCustomer}
+                      isEditing={isEdit}
+                    />
+                  )}
+                />
+                <Route path="/lifecycle" exact component={LifeCycle} />
+                <Route path="/post" exact component={Posts} />
+                <Route path="/" render={() => <div>404</div>} />
+              </Switch>
+            </div>
           </div>
         </div>
-      </div>
+      </Provider>
     );
   }
 }

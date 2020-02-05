@@ -13,6 +13,9 @@ const Header: React.FC = () => {
               <Link to="lifecycle">Home</Link>
             </li>
             <li>
+              <Link to={IRoutes.POST}>Post</Link>
+            </li>
+            <li>
               <Link to={IRoutes.CUSTOMER}>customer</Link>
             </li>
             <li>

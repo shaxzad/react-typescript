@@ -4,10 +4,10 @@ import "./Input.css";
 export interface IProps {
   labelname: string;
   value: string | number;
-  type: "text" | "email" | "number";
+  type: "text" | "email" | "number" | "checkbox";
   placeholder?: string;
   onChange: (e?: any) => void;
-  name: string;
+  name?: string;
 }
 
 const Input: React.SFC<IProps> = props => {

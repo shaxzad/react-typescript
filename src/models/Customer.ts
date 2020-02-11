@@ -33,3 +33,12 @@ export interface IPost {
   openModal: boolean;
   labelname: string;
 }
+
+export interface ITodos {
+  id: number;
+  title: string;
+  userId: number;
+  completed: boolean;
+  labelname: string;
+  todo: any;
+}

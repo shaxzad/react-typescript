@@ -5,6 +5,7 @@ import AddCustomer from "./Customer/addCustomer";
 import PhoneBook from "./PhoneBook/index";
 import LifeCycle from "./lifecycle";
 import Posts from "./Post/post";
+import Todos from "./Todos/todos";
 
 import {
   Route,
@@ -135,6 +136,7 @@ class App extends React.Component<IProps, IState> {
                 />
                 <Route path="/lifecycle" exact component={LifeCycle} />
                 <Route path="/post" exact component={Posts} />
+                <Route path="/todos" exact component={Todos} />
                 <Route path="/" render={() => <div>404</div>} />
               </Switch>
             </div>
